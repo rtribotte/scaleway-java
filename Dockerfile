@@ -23,9 +23,9 @@ RUN  echo "deb http://archive.ubuntu.com/ubuntu xenial main universe\n" > /etc/a
 
 # Install JAVA8
 RUN apt-get -q update                                                                      \
- && apt-get -y -qq upgrade                                                     \
+ && apt-get --allow-unauthenticated -y -qq upgrade                                                     \
  && echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections  \
- && apt-get -y -q install oracle-java8-installer                               \
+ && apt-get --allow-unauthenticated -y -q install oracle-java8-installer                               \
  && apt-get clean
 
 # Patch rootfs
