@@ -12,6 +12,17 @@ MAINTAINER Scaleway <opensource@scaleway.com> (@scaleway)
 # Prepare rootfs for image-builder
 RUN /usr/local/sbin/scw-builder-enter
 
+
+# Install JAVA8
+RUN apt-get -qqy install software-properties-common python-software-properties python3-software-properties
+
+RUN echo | add-apt-repository ppa:webupd8team/java                                         \
+ && apt-get -q update                                                                      \
+ && apt-get -y -qq upgrade                                                     \
+ && echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections  \
+ && apt-get -y -q install oracle-java8-installer                               \
+ && apt-get clean
+
 # ================================================
 #  Customize sources for apt-get
 # ================================================
@@ -22,16 +33,6 @@ RUN  echo "deb http://archive.ubuntu.com/ubuntu xenial main universe\n" > /etc/a
 #  No interactive frontend during docker build
 ENV DEBIAN_FRONTEND=noninteractive \
      DEBCONF_NONINTERACTIVE_SEEN=true
-
-RUN apt-get -qqy install software-properties-common python-software-properties python3-software-properties
-
-# Install JAVA8
-RUN echo | add-apt-repository ppa:webupd8team/java                                         \
- && apt-get -q update                                                                      \
- && apt-get -y -qq upgrade                                                     \
- && echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections  \
- && apt-get -y -q install oracle-java8-installer                               \
- && apt-get clean
 
 #========================
 # Miscellaneous packages
