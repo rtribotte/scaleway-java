@@ -14,14 +14,15 @@ RUN /usr/local/sbin/scw-builder-enter
 
 
 # Install JAVA8
-RUN apt-get -qqy install software-properties-common python-software-properties python3-software-properties
-
 RUN echo | add-apt-repository ppa:webupd8team/java                                         \
  && apt-get -q update                                                                      \
- && apt-get -y -qq upgrade                                                     \
+ && apt-get --force-yes -y -qq upgrade                                                     \
  && echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections  \
- && apt-get -y -q install oracle-java8-installer                               \
+ && apt-get --force-yes -y -q install oracle-java8-installer                               \
  && apt-get clean
+
+# Patch rootfs
+COPY ./overlay/ /
 
 # ================================================
 #  Customize sources for apt-get
@@ -80,8 +81,6 @@ RUN  sudo mkdir -p /opt/selenium \
    && wget --no-verbose https://selenium-release.storage.googleapis.com/3.4/selenium-server-standalone-3.4.0.jar \
      -O /opt/selenium/selenium-server-standalone.jar
 
-# Patch rootfs
-COPY ./overlay/ /
 
 # Clean rootfs from image-builder
 RUN /usr/local/sbin/scw-builder-leave
