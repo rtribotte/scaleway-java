@@ -23,6 +23,8 @@ RUN  echo "deb http://archive.ubuntu.com/ubuntu xenial main universe\n" > /etc/a
 ENV DEBIAN_FRONTEND=noninteractive \
      DEBCONF_NONINTERACTIVE_SEEN=true
 
+RUN apt-get install software-properties-common python-software-properties
+
 # Install JAVA8
 RUN echo | add-apt-repository ppa:webupd8team/java                                         \
  && apt-get -q update                                                                      \
