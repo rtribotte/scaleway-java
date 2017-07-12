@@ -23,14 +23,14 @@ RUN  echo "deb http://archive.ubuntu.com/ubuntu xenial main universe\n" > /etc/a
 ENV DEBIAN_FRONTEND=noninteractive \
      DEBCONF_NONINTERACTIVE_SEEN=true
 
-RUN apt-get -qqy --no-install-recommends install software-properties-common python-software-properties
+RUN apt-get -qqy install software-properties-common python-software-properties python3-software-properties
 
 # Install JAVA8
 RUN echo | add-apt-repository ppa:webupd8team/java                                         \
  && apt-get -q update                                                                      \
- && apt-get --force-yes -y -qq upgrade                                                     \
+ && apt-get -y -qq upgrade                                                     \
  && echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections  \
- && apt-get --force-yes -y -q install oracle-java8-installer                               \
+ && apt-get -y -q install oracle-java8-installer                               \
  && apt-get clean
 
 #========================
