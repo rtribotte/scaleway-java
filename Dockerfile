@@ -36,8 +36,8 @@ ENV DEBIAN_FRONTEND=noninteractive \
 RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" | tee /etc/apt/sources.list.d/webupd8team-java.list \
 && echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" | tee -a /etc/apt/sources.list.d/webupd8team-java.list \
 && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886 \
-&& apt-get -qqy  update \
-&& apt-get --force-yes -y -q  install oracle-java8-installer
+&& apt-get -qqy update \
+&& apt-get -qqy --no-install-recommends install oracle-java8-installer
 
 #========================
 # Miscellaneous packages
