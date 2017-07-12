@@ -23,15 +23,21 @@ RUN  echo "deb http://archive.ubuntu.com/ubuntu xenial main universe\n" > /etc/a
 ENV DEBIAN_FRONTEND=noninteractive \
      DEBCONF_NONINTERACTIVE_SEEN=true
 
-RUN apt-get install software-properties-common python-software-properties
+#RUN apt-get --force-yes -y -q install software-properties-common python-software-properties
+#
+## Install JAVA8
+#RUN echo | add-apt-repository ppa:webupd8team/java                                         \
+# && apt-get -q update                                                                      \
+# && apt-get --force-yes -y -qq upgrade                                                     \
+# && echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections  \
+# && apt-get --force-yes -y -q install oracle-java8-installer                               \
+# && apt-get clean
 
-# Install JAVA8
-RUN echo | add-apt-repository ppa:webupd8team/java                                         \
- && apt-get -q update                                                                      \
- && apt-get --force-yes -y -qq upgrade                                                     \
- && echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections  \
- && apt-get --force-yes -y -q install oracle-java8-installer                               \
- && apt-get clean
+RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" | tee /etc/apt/sources.list.d/webupd8team-java.list \
+&& echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" | tee -a /etc/apt/sources.list.d/webupd8team-java.list \
+&& apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886 \
+&& apt-get -qqy  update \
+&& apt-get --force-yes -y -q  install oracle-java8-installer
 
 #========================
 # Miscellaneous packages
