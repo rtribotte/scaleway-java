@@ -113,7 +113,7 @@ COPY generate_config \
     entry_point.sh \
     /opt/bin/
     
-RUN OPTBIN="$(ls /opt/bin)"
+ENV OPTBIN "$(ls /opt/bin)"
 RUN echo "${OPTBIN}"
 
 # Running this command as sudo just to avoid the message:
