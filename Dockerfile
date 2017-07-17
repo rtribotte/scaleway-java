@@ -82,23 +82,6 @@ RUN  sudo mkdir -p /opt/selenium \
    && wget --no-verbose https://selenium-release.storage.googleapis.com/3.4/selenium-server-standalone-3.4.0.jar \
      -O /opt/selenium/selenium-server-standalone.jar
      
-#=======================================
-# Copy dependancies and run config script
-#========================================
-RUN sudo mkdir -p /opt/bin \
-   && sudo chown seluser:seluser /opt/bin
-
-COPY generate_config \
-    entry_point.sh \
-    /opt/bin/
-    
-RUN chmod +x /opt/bin/generate_config
-
-# Running this command as sudo just to avoid the message:
-# To run a command as administrator (user "root"), use "sudo <command>". See "man sudo_root" for details.
-# When logging into the container
-RUN sudo /opt/bin/generate_config > /opt/selenium/config.json
-
 #========================
 # Selenium Configuration
 #========================
@@ -121,6 +104,24 @@ ENV GRID_BROWSER_TIMEOUT 0
 ENV GRID_TIMEOUT 30
 # Debug
 ENV GRID_DEBUG false
+
+#=======================================
+# Copy dependancies and run config script
+#========================================
+RUN sudo mkdir -p /opt/bin \
+   && sudo chown seluser:seluser /opt/bin
+
+COPY generate_config \
+    entry_point.sh \
+    /opt/bin/
+    
+RUN chmod +x /opt/bin/generate_config
+RUN chmod +x /opt/bin/entry_point.sh
+
+# Running this command as sudo just to avoid the message:
+# To run a command as administrator (user "root"), use "sudo <command>". See "man sudo_root" for details.
+# When logging into the container
+RUN sudo /opt/bin/generate_config > /opt/selenium/config.json
 
 CMD ["/opt/bin/entry_point.sh"]
 
