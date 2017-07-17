@@ -3,7 +3,9 @@
 ROOT=/opt/selenium
 CONF=$ROOT/config.json
 
-/opt/bin/generate_config >$CONF
+IP=$(hostname -I | cut -d' ' -f1)
+
+/opt/bin/generate_config > $CONF
 
 echo "starting selenium hub with configuration:"
 cat $CONF
