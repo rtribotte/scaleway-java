@@ -89,21 +89,23 @@ RUN  sudo mkdir -p /opt/selenium \
 EXPOSE 4444
 
 # As integer, maps to "maxSession"
-ENV GRID_MAX_SESSION 5
+# ENV GRID_MAX_SESSION 5
 # In milliseconds, maps to "newSessionWaitTimeout"
-ENV GRID_NEW_SESSION_WAIT_TIMEOUT -1
+# ENV GRID_NEW_SESSION_WAIT_TIMEOUT -1
 # As a boolean, maps to "throwOnCapabilityNotPresent"
-ENV GRID_THROW_ON_CAPABILITY_NOT_PRESENT true
+# ENV GRID_THROW_ON_CAPABILITY_NOT_PRESENT true
 # As an integer
-ENV GRID_JETTY_MAX_THREADS -1
+# ENV GRID_JETTY_MAX_THREADS -1
 # In milliseconds, maps to "cleanUpCycle"
-ENV GRID_CLEAN_UP_CYCLE 5000
+# ENV GRID_CLEAN_UP_CYCLE 5000
 # In seconds, maps to "browserTimeout"
-ENV GRID_BROWSER_TIMEOUT 0
+# ENV GRID_BROWSER_TIMEOUT 0
 # In seconds, maps to "timeout"
-ENV GRID_TIMEOUT 30
+# ENV GRID_TIMEOUT 30
 # Debug
-ENV GRID_DEBUG false
+# ENV GRID_DEBUG false
+# IP
+ENV IP 127.0.0.1
 
 #=======================================
 # Copy dependancies and run config script
