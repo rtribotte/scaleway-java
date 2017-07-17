@@ -106,15 +106,15 @@ ENV GRID_TIMEOUT 30
 # Debug
 ENV GRID_DEBUG false
 
-RUN mkdir /opt/bin/
-
-RUN ls /opt/bin/
+RUN sudo mkdir -p /opt/bin \
+   && sudo chown seluser:seluser /opt/bin
 
 COPY generate_config \
     entry_point.sh \
     /opt/bin/
     
-RUN ls /opt/bin/
+RUN OPTBIN="$(ls /opt/bin)"
+RUN echo "${OPTBIN}"
 
 # Running this command as sudo just to avoid the message:
 # To run a command as administrator (user "root"), use "sudo <command>". See "man sudo_root" for details.
