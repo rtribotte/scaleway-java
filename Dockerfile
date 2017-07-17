@@ -106,9 +106,14 @@ ENV GRID_TIMEOUT 30
 # Debug
 ENV GRID_DEBUG false
 
+RUN echo 'ls /opt/bin/'
+
 COPY generate_config \
     entry_point.sh \
     /opt/bin/
+    
+RUN echo 'ls /opt/bin/'
+
 # Running this command as sudo just to avoid the message:
 # To run a command as administrator (user "root"), use "sudo <command>". See "man sudo_root" for details.
 # When logging into the container
