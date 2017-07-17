@@ -2,7 +2,7 @@
 
 cat <<_EOF
 {
-  "host": null,
+  "host": $IP,
   "port": 4444,
   "role": "hub",
   "maxSession": 5,
