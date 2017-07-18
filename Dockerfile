@@ -123,7 +123,7 @@ RUN chmod +x /opt/bin/entry_point.sh
 # Running this command as sudo just to avoid the message:
 # To run a command as administrator (user "root"), use "sudo <command>". See "man sudo_root" for details.
 # When logging into the container
-RUN sudo /opt/bin/generate_config > /opt/selenium/config.json
+# RUN sudo /opt/bin/generate_config > /opt/selenium/config.json
 
 CMD ["/opt/bin/entry_point.sh"]
 
