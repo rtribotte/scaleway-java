@@ -19,7 +19,7 @@ function shutdown {
     echo "shutdown complete"
 }
 
-nohup java ${JAVA_OPTS} -jar /opt/selenium/selenium-server-standalone.jar \
+java ${JAVA_OPTS} -jar /opt/selenium/selenium-server-standalone.jar \
   -role hub \
   -hubConfig $CONF \
   ${SE_OPTS} &
