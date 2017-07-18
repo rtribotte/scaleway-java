@@ -104,8 +104,6 @@ EXPOSE 4444
 # ENV GRID_TIMEOUT 30
 # Debug
 # ENV GRID_DEBUG false
-# IP
-ENV IP 127.0.0.1
 
 #=======================================
 # Copy dependancies and run config script
