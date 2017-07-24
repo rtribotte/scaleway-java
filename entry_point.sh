@@ -25,5 +25,9 @@ java ${JAVA_OPTS} -jar /opt/selenium/selenium-server-standalone.jar \
   ${SE_OPTS} &
 NODE_PID=$!
 
-trap shutdown SIGTERM SIGINT
-wait $NODE_PID
+# trap shutdown SIGTERM SIGINT
+# wait $NODE_PID
+
+if [[ $1 == "-bash" ]]; then
+  /bin/bash
+fi
