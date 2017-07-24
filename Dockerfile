@@ -123,7 +123,7 @@ RUN chmod +x /opt/bin/entry_point.sh
 # When logging into the container
 # RUN sudo /opt/bin/generate_config > /opt/selenium/config.json
 
-ENTRYPOINT ["/opt/bin/entry_point.sh", "-bash"]
+CMD ["/bin/sh", "/opt/bin/entry_point.sh"]
 
 # Clean rootfs from image-builder
 RUN /usr/local/sbin/scw-builder-leave
