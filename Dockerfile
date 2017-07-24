@@ -126,5 +126,5 @@ RUN chmod +x /opt/bin/entry_point.sh
 # Clean rootfs from image-builder
 RUN /usr/local/sbin/scw-builder-leave
 
-ENTRYPOINT ["/opt/bin/entry_point.sh"]
+CMD ["/opt/bin/entry_point.sh"]
 
