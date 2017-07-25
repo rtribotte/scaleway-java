@@ -3,7 +3,23 @@
 ROOT=/opt/selenium
 CONF=$ROOT/config.json
 
-/opt/bin/selenium_config > $CONF
+cat <<_EOF
+{
+  "host": $(hostname -I | cut -d' ' -f1),
+  "port": 4444,
+  "role": "hub",
+  "maxSession": 5,
+  "newSessionWaitTimeout": 1,
+  "capabilityMatcher": "org.openqa.grid.internal.utils.DefaultCapabilityMatcher",
+  "throwOnCapabilityNotPresent": true,
+  "jettyMaxThreads": -1,
+  "cleanUpCycle": 5000,
+  "browserTimeout": 0,
+  "timeout": 30,
+  "debug": false
+}
+_EOF /
+> $CONF
 
 echo "starting selenium hub with configuration:"
 cat $CONF
