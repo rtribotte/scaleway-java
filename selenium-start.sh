@@ -41,5 +41,5 @@ NODE_PID=$!
 #trap shutdown SIGTERM SIGINT
 #wait $NODE_PID
 
-systemctl disable init-selenium
+# systemctl disable init-selenium
 
