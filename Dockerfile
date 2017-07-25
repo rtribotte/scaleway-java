@@ -111,19 +111,20 @@ EXPOSE 4444
 RUN sudo mkdir -p /opt/bin \
    && sudo chown seluser:seluser /opt/bin
 
-COPY generate_config \
-    entry_point.sh \
+COPY selenium_config \
+    selenium-start.sh \
     /opt/bin/
     
-RUN chmod +x /opt/bin/generate_config
-RUN chmod +x /opt/bin/entry_point.sh
+RUN chmod +x /opt/bin/selenium_config
+RUN chmod +x /opt/bin/selenium-start.sh
 
 # Running this command as sudo just to avoid the message:
 # To run a command as administrator (user "root"), use "sudo <command>". See "man sudo_root" for details.
 # When logging into the container
 # RUN sudo /opt/bin/generate_config > /opt/selenium/config.json
 
-ENTRYPOINT ["/opt/bin/entry_point.sh", "-bash"]
+# Patch rootfs
+COPY ./overlay/ /
 
 # Clean rootfs from image-builder
 RUN /usr/local/sbin/scw-builder-leave

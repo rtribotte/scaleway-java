@@ -1,0 +1,10 @@
+[Unit]
+Description=initialize selenium on first boot
+After=network.target
+
+[Service]
+ExecStart=/opt/bin/entry_point.sh
+Type=oneshot
+
+[Install]
+WantedBy=multi-user.target
