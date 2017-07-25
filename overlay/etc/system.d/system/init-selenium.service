@@ -1,10 +1,11 @@
 [Unit]
-Description=initialize selenium on first boot
+Description=Selenium Hub Service
 After=network.target
 
 [Service]
-ExecStart=/opt/bin/entry_point.sh
 Type=oneshot
+ExecStart=/opt/bin/selenium-start.sh
+Restart=always
 
 [Install]
 WantedBy=multi-user.target
