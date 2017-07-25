@@ -28,4 +28,6 @@ NODE_PID=$!
 # trap shutdown SIGTERM SIGINT
 # wait $NODE_PID
 
-/bin/bash
+if [[ $1 == "-bash" ]]; then
+  /bin/bash
+fi
