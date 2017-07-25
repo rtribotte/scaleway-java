@@ -120,6 +120,8 @@ RUN chmod +x /opt/bin/selenium-start.sh
 
 RUN systemctl enable /etc/system.d/system/init-selenium.service
 
+CMD ["/usr/sbin/init"]
+
 # Running this command as sudo just to avoid the message:
 # To run a command as administrator (user "root"), use "sudo <command>". See "man sudo_root" for details.
 # When logging into the container
