@@ -123,9 +123,6 @@ RUN chmod +x /opt/bin/selenium-start.sh
 # When logging into the container
 # RUN sudo /opt/bin/generate_config > /opt/selenium/config.json
 
-# Patch rootfs
-COPY ./overlay/ /
-
 # Clean rootfs from image-builder
 RUN /usr/local/sbin/scw-builder-leave
 
