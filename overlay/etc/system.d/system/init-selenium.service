@@ -3,8 +3,10 @@ Description=Selenium Hub Service
 After=network.target
 
 [Service]
-Type=oneshot
-ExecStart=/opt/bin/selenium-start.sh
+Type=forking
+WorkingDirectory=/opt/selenium/
+ExecStart=/usr/bin/java -cp /opt/selenium/selenium-server-standalone.jar -role hub -hubConfig $CONF ${SE_OPTS} &
+ExecStop=/bin/kill -TERM $MAINPID
 Restart=always
 
 [Install]
